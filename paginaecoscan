@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoScan · Reciclar nunca fue tan fácil</title>
+    <style>
+        /* ---------- Reset y tipografía ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #f2f7f2;
+            color: #1e3a2e;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Encabezado ---------- */
+        header {
+            background: #1e4a2b;
+            color: white;
+            padding: 1.8rem 0;
+            box-shadow: 0 4px 12px rgba(0, 30, 0, 0.2);
+        }
+        header .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        header h1 span {
+            color: #b3e5b3;
+        }
+        header .slogan {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-top: 0.2rem;
+            color: #d4edda;
+        }
+
+        /* ---------- Secciones generales ---------- */
+        section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid #d0e4d0;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a4a2a;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #3c8d5c;
+            margin: 0.5rem auto 0;
+            border-radius: 4px;
+        }
+
+        /* ---------- Misión ---------- */
+        .mission-text {
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 40, 0, 0.06);
+            border-left: 6px solid #3c8d5c;
+        }
+
+        /* ---------- Pasos ---------- */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .step-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0, 30, 0, 0.04);
+            transition: transform 0.2s ease;
+            border-top: 5px solid #3c8d5c;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        .step-number {
+            display: inline-block;
+            background: #1e4a2b;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a3a22;
+        }
+        .step-card p {
+            color: #2d4d3a;
+            font-size: 0.98rem;
+        }
+
+        /* ---------- Impacto (placeholders) ---------- */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+        .impact-item {
+            background: white;
+            padding: 1.8rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0, 30, 0, 0.04);
+            text-align: center;
+            border-bottom: 4px solid #a8c9a8;
+        }
+        .impact-item h4 {
+            font-size: 1.3rem;
+            color: #1e4a2b;
+            margin-bottom: 0.5rem;
+        }
+        .impact-item p {
+            color: #2d4d3a;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .impact-item .placeholder-icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+        .badge {
+            display: inline-block;
+            background: #e6f3e6;
+            color: #1e4a2b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            border: 1px dashed #3c8d5c;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: #0e2a1a;
+            color: #d4e8d4;
+            padding: 2.5rem 0;
+            margin-top: 1rem;
+        }
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        footer .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        footer .contact-info a {
+            color: #b3e0b3;
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
+            transition: border-color 0.2s;
+        }
+        footer .contact-info a:hover {
+            border-bottom-color: #b3e0b3;
+        }
+        footer .copy {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .mission-text {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+            .step-card {
+                padding: 1.5rem 1rem;
+            }
+            .impact-item {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== ENCABEZADO ===== -->
+<header>
+    <div class="container">
+        <h1>Eco<span>Scan</span></h1>
+        <p class="slogan">♻️ Reciclar nunca fue tan fácil.</p>
+    </div>
+</header>
+
+<!-- ===== SOBRE NOSOTROS / MISIÓN ===== -->
+<section>
+    <div class="container">
+        <h2 class="section-title">Nuestra misión</h2>
+        <div class="mission-text">
+            <p>
+                Nuestra misión es hacer que el reciclaje sea accesible para todos. 
+                A través de la tecnología, permitimos que cualquier persona se involucre 
+                de forma efectiva en el cuidado del medio ambiente con tan solo tomar una fotografía. 
+                No necesitas ser un experto en tipos de desechos ni conocer de memoria los centros de acopio; 
+                nosotros nos encargamos de la complejidad.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CÓMO FUNCIONA (TRES PASOS) ===== -->
+<section>
+    <div class="container">
+        <h2 class="section-title">¿Cómo funciona?</h2>
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>📸 Captura</h3>
+                <p>Tomas una fotografía de tu residuo con el celular.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>🔍 Escanea</h3>
+                <p>Nuestra aplicación analiza y categoriza el tipo de desecho automáticamente.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>♻️ Recicla</h3>
+                <p>La app te señala el centro de reciclaje adecuado más cercano a tu ubicación.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== IMPACTO (PLACEHOLDERS) ===== -->
+<section>
+    <div class="container">
+        <h2 class="section-title">Información y transparencia</h2>
+        <div class="impact-grid">
+
+            <!-- Buenas Prácticas -->
+            <div class="impact-item">
+                <div class="placeholder-icon">🌱</div>
+                <h4>Buenas Prácticas</h4>
+                <p>Consejos rápidos para separar residuos en casa.</p>
+                <span class="badge">Próximamente</span>
+            </div>
+
+            <!-- Estadísticas y Estudios -->
+            <div class="impact-item">
+                <div class="placeholder-icon">📊</div>
+                <h4>Estadísticas y Estudios</h4>
+                <p>Datos sobre el impacto del reciclaje y reportes de la app.</p>
+                <span class="badge">En construcción</span>
+            </div>
+
+            <!-- Proyectos Realizados -->
+            <div class="impact-item">
+                <div class="placeholder-icon">🌍</div>
+                <h4>Proyectos Realizados</h4>
+                <p>Iniciativas comunitarias o campañas de limpieza exitosas.</p>
+                <span class="badge">Pronto</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== PIE DE PÁGINA / CONTACTO ===== -->
+<footer>
+    <div class="container">
+        <div class="contact-info">
+            <span>✉️ <a href="mailto:contacto@ecoscan.com">contacto@ecoscan.com</a></span>
+            <span>📞 <a href="tel:+528100000000">+52 81 0000 0000</a></span>
+        </div>
+        <p class="copy">
+            &copy; 2026 EcoScan · Reciclar nunca fue tan fácil.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
